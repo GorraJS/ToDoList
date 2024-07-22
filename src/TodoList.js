@@ -1,33 +1,28 @@
 import { useState } from "react"
 
-const [task, setTask] = useState([])
-const [newTask, setNewTask] = useState()
+function TodoList() {
+    const [task, setTask] = useState([])
+    const [newTask, setNewTask] = useState('')
 
-const handleInputChange = (event) => {
-    setNewTask(event.target.task)
-}
+    const handleChangeInput = (event) => {
+        setNewTask(event.target.value)
+    }
 
-const handleChangeTask = () => {
-    setTask(newTask)
-}
+    const addTask = () => {
+        if (task.trim() !== '') {
+            setNewTask([...newTask, task])
+            setTask('')
+        }
+    }
 
-const Submit = () => {
-    addTask() 
-
-}
-
-<div>
-    <form>
-        <input type="text" value={newTask} onChange={handleInputChange}></input>
-        <button type="submit" onSubmit={Submit}>Submit</button>
-    </form>
-</div>
-
-
-function addTask() {
     return (
-        
+        <div className="todo-list-container">
+            <from>
+                <h1>Lista de Tareas</h1>
+                <input type="text" value={task} onChange={handleChangeInput}></input>
+                <button onClick={addTask}>Agregar</button>
+            </from>
+        </div>
     )
 }
-
-export default addTask
+export default TodoList
