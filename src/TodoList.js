@@ -9,19 +9,21 @@ function TodoList() {
     }
 
     const addTask = () => {
-        if (task.trim() !== '') {
-            setNewTask([...newTask, task])
-            setTask('')
+        if (newTask.trim(" ") !== '') {
+            setTask([...task, newTask])
+            setNewTask('')
         }
     }
-
     return (
         <div className="todo-list-container">
             <from>
                 <h1>Lista de Tareas</h1>
-                <input type="text" value={task} onChange={handleChangeInput}></input>
+                <input type="text" value={newTask} onChange={handleChangeInput}></input>
                 <button onClick={addTask}>Agregar</button>
             </from>
+            <ul>
+                {task.map((str) => <li>{str}</li>)}
+            </ul>
         </div>
     )
 }
